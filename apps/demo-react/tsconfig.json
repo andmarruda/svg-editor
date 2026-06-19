@@ -1,0 +1,9 @@
+{
+  "extends": "@svg-editor/tsconfig/react.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "noEmit": true
+  },
+  "include": ["src"]
+}

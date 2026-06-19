@@ -1,0 +1,40 @@
+{
+  "name": "@svg-editor/core",
+  "version": "0.1.0",
+  "description": "Framework-agnostic SVG editor core — ports & adapters architecture",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@svg-editor/tsconfig": "workspace:*",
+    "@svg-editor/vitest-config": "workspace:*",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.3",
+    "@vitest/coverage-v8": "^3.2.3",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "nanoid": "^5.1.5"
+  }
+}
