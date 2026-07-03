@@ -58,7 +58,12 @@ function BoundingBox_containsPoint(b: BoundingBox, p: Point): boolean {
 }
 
 function boundsIntersect(a: BoundingBox, b: BoundingBox): boolean {
-  return !(a.x + a.width < b.x || b.x + b.width < a.x || a.y + a.height < b.y || b.y + b.height < a.y);
+  return !(
+    a.x + a.width < b.x ||
+    b.x + b.width < a.x ||
+    a.y + a.height < b.y ||
+    b.y + b.height < a.y
+  );
 }
 
 function boundsContained(inner: BoundingBox, outer: BoundingBox): boolean {

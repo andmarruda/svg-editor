@@ -38,7 +38,11 @@ export class UngroupNodesCommand implements ICommand {
     const group = this.snapshot;
     const filteredRoot = doc.rootOrder.filter((id) => !group.children.includes(id));
     const insertAt = Math.max(0, Math.min(this.groupIndex, filteredRoot.length));
-    const newRoot = [...filteredRoot.slice(0, insertAt), this.groupId, ...filteredRoot.slice(insertAt)];
+    const newRoot = [
+      ...filteredRoot.slice(0, insertAt),
+      this.groupId,
+      ...filteredRoot.slice(insertAt),
+    ];
 
     const updatedNodes = new Map(doc.nodes);
     updatedNodes.set(this.groupId, group);

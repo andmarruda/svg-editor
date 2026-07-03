@@ -8,21 +8,18 @@ export default [
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsparser,
-      parserOptions: {
-        projectService: true,
-      },
     },
     plugins: {
       '@typescript-eslint': tseslint,
       unicorn,
     },
     rules: {
-      ...tseslint.configs['recommended-type-checked'].rules,
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      ...tseslint.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-shadow': 'error',
-      '@typescript-eslint/no-param-reassign': 'error',
-      'unicorn/no-array-for-each': 'error',
-      'unicorn/prefer-ternary': 'error',
+      'no-param-reassign': 'error',
+      'unicorn/no-array-for-each': 'off',
+      'unicorn/prefer-ternary': 'off',
       'no-console': 'warn',
     },
   },

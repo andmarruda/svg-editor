@@ -17,7 +17,9 @@ export class GroupNodesCommand implements ICommand {
 
   execute(doc: Document): Document {
     // Find the z-position of the topmost node
-    const topIndex = Math.max(...this.ids.map((id) => doc.rootOrder.indexOf(id)).filter((i) => i !== -1));
+    const topIndex = Math.max(
+      ...this.ids.map((id) => doc.rootOrder.indexOf(id)).filter((i) => i !== -1),
+    );
 
     // Remove nodes from root
     const filteredRoot = doc.rootOrder.filter((id) => !this.ids.includes(id));
@@ -41,7 +43,11 @@ export class GroupNodesCommand implements ICommand {
     const updatedNodes = new Map(doc.nodes);
     updatedNodes.set(this.groupId, group);
 
-    const newRoot = [...filteredRoot.slice(0, insertAt), this.groupId, ...filteredRoot.slice(insertAt)];
+    const newRoot = [
+      ...filteredRoot.slice(0, insertAt),
+      this.groupId,
+      ...filteredRoot.slice(insertAt),
+    ];
 
     return { ...doc, nodes: updatedNodes, rootOrder: newRoot };
   }

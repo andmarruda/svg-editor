@@ -8,9 +8,7 @@ export class UngroupNodesUseCase {
   constructor(private readonly history: HistoryManager) {}
 
   execute(doc: Document, ids: NodeId[]): { doc: Document; ungroupedIds: NodeId[] } {
-    const groupNodes = ids
-      .map((id) => doc.nodes.get(id))
-      .filter((n) => n?.type === 'group');
+    const groupNodes = ids.map((id) => doc.nodes.get(id)).filter((n) => n?.type === 'group');
 
     const children = groupNodes.flatMap((g) => (g?.type === 'group' ? g.children : []));
     const commands = ids.map((id) => new UngroupNodesCommand(id));

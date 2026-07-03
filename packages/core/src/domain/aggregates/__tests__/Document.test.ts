@@ -14,7 +14,12 @@ function makeRect(id: string, x = 0, y = 0, w = 100, h = 100): RectNode {
     id: NodeId.from(id),
     type: 'rect',
     name: id,
-    x, y, width: w, height: h, rx: 0, ry: 0,
+    x,
+    y,
+    width: w,
+    height: h,
+    rx: 0,
+    ry: 0,
     transform: Transform.identity(),
     fill: Fill.solid({ r: 0, g: 0, b: 0, a: 1 }),
     stroke: Stroke.NONE,
@@ -66,9 +71,17 @@ describe('DocumentMutations.addNode', () => {
   it('adds a child node to a group', () => {
     const groupId = NodeId.from('g1');
     const group: GroupNode = {
-      id: groupId, type: 'group', name: 'g1', children: [],
-      transform: Transform.identity(), fill: Fill.NONE, stroke: Stroke.NONE,
-      opacity: 1, visibility: true, locked: false, metadata: {},
+      id: groupId,
+      type: 'group',
+      name: 'g1',
+      children: [],
+      transform: Transform.identity(),
+      fill: Fill.NONE,
+      stroke: Stroke.NONE,
+      opacity: 1,
+      visibility: true,
+      locked: false,
+      metadata: {},
     };
     let doc = Document.create(docId, 800, 600);
     doc = DocumentMutations.addNode(doc, group);
@@ -99,9 +112,17 @@ describe('DocumentMutations.removeNode', () => {
   it('removes children when removing a group', () => {
     const groupId = NodeId.from('g1');
     const group: GroupNode = {
-      id: groupId, type: 'group', name: 'g1', children: [NodeId.from('r1')],
-      transform: Transform.identity(), fill: Fill.NONE, stroke: Stroke.NONE,
-      opacity: 1, visibility: true, locked: false, metadata: {},
+      id: groupId,
+      type: 'group',
+      name: 'g1',
+      children: [NodeId.from('r1')],
+      transform: Transform.identity(),
+      fill: Fill.NONE,
+      stroke: Stroke.NONE,
+      opacity: 1,
+      visibility: true,
+      locked: false,
+      metadata: {},
     };
     let doc = Document.create(docId, 800, 600);
     doc = DocumentMutations.addNode(doc, group);
@@ -116,7 +137,9 @@ describe('DocumentMutations.updateNode', () => {
   it('updates a node attribute', () => {
     let doc = Document.create(docId, 800, 600);
     doc = DocumentMutations.addNode(doc, makeRect('r1', 0, 0, 100, 100));
-    doc = DocumentMutations.updateNode(doc, NodeId.from('r1'), { x: 50 } as Partial<import('../../entities/SvgNode').SvgNode>);
+    doc = DocumentMutations.updateNode(doc, NodeId.from('r1'), { x: 50 } as Partial<
+      import('../../entities/SvgNode').SvgNode
+    >);
     const node = doc.nodes.get(NodeId.from('r1')) as RectNode;
     expect(node.x).toBe(50);
   });
@@ -129,11 +152,7 @@ describe('DocumentMutations.reorderInRoot', () => {
     doc = DocumentMutations.addNode(doc, makeRect('r2'));
     doc = DocumentMutations.addNode(doc, makeRect('r3'));
     doc = DocumentMutations.reorderInRoot(doc, NodeId.from('r1'), 2);
-    expect(doc.rootOrder).toEqual([
-      NodeId.from('r2'),
-      NodeId.from('r3'),
-      NodeId.from('r1'),
-    ]);
+    expect(doc.rootOrder).toEqual([NodeId.from('r2'), NodeId.from('r3'), NodeId.from('r1')]);
   });
 });
 
@@ -141,9 +160,17 @@ describe('DocumentMutations.traverseDepthFirst', () => {
   it('traverses all nodes in depth-first order', () => {
     const groupId = NodeId.from('g1');
     const group: GroupNode = {
-      id: groupId, type: 'group', name: 'g1', children: [NodeId.from('r1'), NodeId.from('r2')],
-      transform: Transform.identity(), fill: Fill.NONE, stroke: Stroke.NONE,
-      opacity: 1, visibility: true, locked: false, metadata: {},
+      id: groupId,
+      type: 'group',
+      name: 'g1',
+      children: [NodeId.from('r1'), NodeId.from('r2')],
+      transform: Transform.identity(),
+      fill: Fill.NONE,
+      stroke: Stroke.NONE,
+      opacity: 1,
+      visibility: true,
+      locked: false,
+      metadata: {},
     };
     let doc = Document.create(docId, 800, 600);
     doc = DocumentMutations.addNode(doc, makeRect('r0'));
@@ -162,9 +189,17 @@ describe('DocumentMutations.findParentId', () => {
   it('finds parent of a child node', () => {
     const groupId = NodeId.from('g1');
     const group: GroupNode = {
-      id: groupId, type: 'group', name: 'g1', children: [],
-      transform: Transform.identity(), fill: Fill.NONE, stroke: Stroke.NONE,
-      opacity: 1, visibility: true, locked: false, metadata: {},
+      id: groupId,
+      type: 'group',
+      name: 'g1',
+      children: [],
+      transform: Transform.identity(),
+      fill: Fill.NONE,
+      stroke: Stroke.NONE,
+      opacity: 1,
+      visibility: true,
+      locked: false,
+      metadata: {},
     };
     let doc = Document.create(docId, 800, 600);
     doc = DocumentMutations.addNode(doc, group);

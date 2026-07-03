@@ -1,6 +1,6 @@
 {
   "name": "@svg-editor/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Framework-agnostic SVG editor core — ports & adapters architecture",
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,10 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "dev": "vite build --watch",

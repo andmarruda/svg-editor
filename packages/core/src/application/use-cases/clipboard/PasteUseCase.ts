@@ -39,11 +39,23 @@ function applyOffset(node: SvgNode, newId: NodeId, offset: { x: number; y: numbe
   const base = { ...node, id: newId };
   switch (base.type) {
     case 'rect':
-    case 'image': return { ...base, x: base.x + offset.x, y: base.y + offset.y };
-    case 'ellipse': return { ...base, cx: base.cx + offset.x, cy: base.cy + offset.y };
-    case 'circle': return { ...base, cx: base.cx + offset.x, cy: base.cy + offset.y };
-    case 'text': return { ...base, x: base.x + offset.x, y: base.y + offset.y };
-    case 'line': return { ...base, x1: base.x1 + offset.x, y1: base.y1 + offset.y, x2: base.x2 + offset.x, y2: base.y2 + offset.y };
-    default: return base;
+    case 'image':
+      return { ...base, x: base.x + offset.x, y: base.y + offset.y };
+    case 'ellipse':
+      return { ...base, cx: base.cx + offset.x, cy: base.cy + offset.y };
+    case 'circle':
+      return { ...base, cx: base.cx + offset.x, cy: base.cy + offset.y };
+    case 'text':
+      return { ...base, x: base.x + offset.x, y: base.y + offset.y };
+    case 'line':
+      return {
+        ...base,
+        x1: base.x1 + offset.x,
+        y1: base.y1 + offset.y,
+        x2: base.x2 + offset.x,
+        y2: base.y2 + offset.y,
+      };
+    default:
+      return base;
   }
 }

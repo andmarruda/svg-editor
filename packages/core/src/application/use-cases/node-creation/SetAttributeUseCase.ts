@@ -8,7 +8,12 @@ import { CompositeCommand } from '../../commands/CompositeCommand';
 export class SetAttributeUseCase {
   constructor(private readonly history: HistoryManager) {}
 
-  execute<K extends keyof SvgNode>(doc: Document, ids: NodeId[], key: K, value: SvgNode[K]): Document {
+  execute<K extends keyof SvgNode>(
+    doc: Document,
+    ids: NodeId[],
+    key: K,
+    value: SvgNode[K],
+  ): Document {
     if (ids.length === 0) return doc;
     if (ids.length === 1) {
       const id = ids[0]!;

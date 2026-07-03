@@ -16,7 +16,10 @@ export function parseTransformAttr(value: string | null | undefined): Transform 
 
   while ((match = regex.exec(value)) !== null) {
     const fn = match[1] ?? '';
-    const args = (match[2] ?? '').trim().split(/[\s,]+/).map(Number);
+    const args = (match[2] ?? '')
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number);
 
     switch (fn) {
       case 'matrix':
@@ -77,10 +80,7 @@ export function parseColorAttr(value: string | null | undefined): Color | null {
 
 // ── Fill ────────────────────────────────────────────────────────────────────
 
-export function parseFillAttr(
-  value: string | null | undefined,
-  opacity: number,
-): Fill {
+export function parseFillAttr(value: string | null | undefined, opacity: number): Fill {
   if (!value || value === 'none') return Fill.none();
   if (value.startsWith('url(')) return Fill.pattern(value.slice(5, -1));
   const color = parseColorAttr(value);
@@ -102,9 +102,8 @@ export function parseStrokeAttrs(attrs: Record<string, string | undefined>): Str
   const miterLimit = parseFloat(attrs['stroke-miterlimit'] ?? '4');
   const dashOffset = parseFloat(attrs['stroke-dashoffset'] ?? '0');
   const dashArrayStr = attrs['stroke-dasharray'];
-  const dashArray = dashArrayStr && dashArrayStr !== 'none'
-    ? dashArrayStr.split(/[\s,]+/).map(Number)
-    : [];
+  const dashArray =
+    dashArrayStr && dashArrayStr !== 'none' ? dashArrayStr.split(/[\s,]+/).map(Number) : [];
 
   return {
     color: Color.withAlpha(color, isNaN(opacity) ? 1 : opacity),
@@ -122,7 +121,10 @@ export function parseStrokeAttrs(attrs: Record<string, string | undefined>): Str
 
 export function parsePointsAttr(value: string | null | undefined): Point[] {
   if (!value?.trim()) return [];
-  const nums = value.trim().split(/[\s,]+/).map(Number);
+  const nums = value
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
   const points: Point[] = [];
   for (let i = 0; i + 1 < nums.length; i += 2) {
     points.push(Point.of(nums[i] ?? 0, nums[i + 1] ?? 0));
@@ -157,10 +159,28 @@ function fmt(n: number): string {
 }
 
 const NAMED_COLORS: Record<string, string> = {
-  black: '#000000', white: '#ffffff', red: '#ff0000', green: '#008000',
-  blue: '#0000ff', yellow: '#ffff00', cyan: '#00ffff', magenta: '#ff00ff',
-  orange: '#ffa500', purple: '#800080', pink: '#ffc0cb', gray: '#808080',
-  grey: '#808080', silver: '#c0c0c0', gold: '#ffd700', brown: '#a52a2a',
-  lime: '#00ff00', navy: '#000080', teal: '#008080', maroon: '#800000',
-  olive: '#808000', aqua: '#00ffff', fuchsia: '#ff00ff', transparent: '#00000000',
+  black: '#000000',
+  white: '#ffffff',
+  red: '#ff0000',
+  green: '#008000',
+  blue: '#0000ff',
+  yellow: '#ffff00',
+  cyan: '#00ffff',
+  magenta: '#ff00ff',
+  orange: '#ffa500',
+  purple: '#800080',
+  pink: '#ffc0cb',
+  gray: '#808080',
+  grey: '#808080',
+  silver: '#c0c0c0',
+  gold: '#ffd700',
+  brown: '#a52a2a',
+  lime: '#00ff00',
+  navy: '#000080',
+  teal: '#008080',
+  maroon: '#800000',
+  olive: '#808000',
+  aqua: '#00ffff',
+  fuchsia: '#ff00ff',
+  transparent: '#00000000',
 };

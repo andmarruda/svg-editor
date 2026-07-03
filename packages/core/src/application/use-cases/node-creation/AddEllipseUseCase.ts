@@ -16,7 +16,13 @@ export class AddEllipseUseCase {
     private readonly idGenerator: IIdGenerator,
   ) {}
 
-  execute(doc: Document, cx: number, cy: number, rx: number, ry: number): { doc: Document; id: NodeId } {
+  execute(
+    doc: Document,
+    cx: number,
+    cy: number,
+    rx: number,
+    ry: number,
+  ): { doc: Document; id: NodeId } {
     const id = NodeIdNS.from(this.idGenerator.generate());
     const ellipse: EllipseNode = {
       id,

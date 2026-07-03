@@ -39,11 +39,23 @@ function offsetNode(node: SvgNode, newId: NodeId): SvgNode {
   const base = { ...node, id: newId };
   switch (base.type) {
     case 'rect':
-    case 'image': return { ...base, x: base.x + PASTE_OFFSET, y: base.y + PASTE_OFFSET };
-    case 'ellipse': return { ...base, cx: base.cx + PASTE_OFFSET, cy: base.cy + PASTE_OFFSET };
-    case 'circle': return { ...base, cx: base.cx + PASTE_OFFSET, cy: base.cy + PASTE_OFFSET };
-    case 'text': return { ...base, x: base.x + PASTE_OFFSET, y: base.y + PASTE_OFFSET };
-    case 'line': return { ...base, x1: base.x1 + PASTE_OFFSET, y1: base.y1 + PASTE_OFFSET, x2: base.x2 + PASTE_OFFSET, y2: base.y2 + PASTE_OFFSET };
-    default: return base;
+    case 'image':
+      return { ...base, x: base.x + PASTE_OFFSET, y: base.y + PASTE_OFFSET };
+    case 'ellipse':
+      return { ...base, cx: base.cx + PASTE_OFFSET, cy: base.cy + PASTE_OFFSET };
+    case 'circle':
+      return { ...base, cx: base.cx + PASTE_OFFSET, cy: base.cy + PASTE_OFFSET };
+    case 'text':
+      return { ...base, x: base.x + PASTE_OFFSET, y: base.y + PASTE_OFFSET };
+    case 'line':
+      return {
+        ...base,
+        x1: base.x1 + PASTE_OFFSET,
+        y1: base.y1 + PASTE_OFFSET,
+        x2: base.x2 + PASTE_OFFSET,
+        y2: base.y2 + PASTE_OFFSET,
+      };
+    default:
+      return base;
   }
 }

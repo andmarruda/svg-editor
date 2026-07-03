@@ -4,8 +4,5 @@ export type Unsubscribe = () => void;
 
 export interface IEventBus {
   publish(event: EditorDomainEvent): void;
-  subscribe<T extends EditorDomainEvent>(
-    type: T['type'],
-    handler: (event: T) => void,
-  ): Unsubscribe;
+  subscribe<T extends EditorDomainEvent>(type: T['type'], handler: (event: T) => void): Unsubscribe;
 }

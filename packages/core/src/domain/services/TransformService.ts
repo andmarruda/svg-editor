@@ -46,7 +46,11 @@ export const TransformService = {
   },
 } as const;
 
-function translatePathCommands(commands: readonly PathCommand[], dx: number, dy: number): PathCommand[] {
+function translatePathCommands(
+  commands: readonly PathCommand[],
+  dx: number,
+  dy: number,
+): PathCommand[] {
   return commands.map((cmd) => {
     switch (cmd.type) {
       case 'M':

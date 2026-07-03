@@ -2,18 +2,31 @@
   "name": "svg-editor-monorepo",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
+    "docs:api": "typedoc",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "audit:performance": "node scripts/performance-audit.mjs",
+    "audit:a11y": "node scripts/accessibility-audit.mjs",
+    "test:browsers": "node scripts/browser-compatibility.mjs",
+    "ci": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm docs:api && pnpm audit:performance && pnpm audit:a11y && pnpm test:browsers",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "turbo": "^2.5.4",
+    "@changesets/cli": "^2.31.0",
+    "eslint": "^10.6.0",
+    "playwright": "^1.61.1",
     "prettier": "^3.5.3",
+    "turbo": "^2.5.4",
+    "typedoc": "^0.28.19",
     "typescript": "^5.8.3"
   },
   "engines": {

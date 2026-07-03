@@ -23,7 +23,7 @@ export interface SvgNodeBase {
   readonly transform: Transform;
   readonly fill: Fill;
   readonly stroke: Stroke;
-  readonly opacity: number;       // 0–1
+  readonly opacity: number; // 0–1
   readonly visibility: boolean;
   readonly locked: boolean;
   readonly metadata: Readonly<Record<string, string>>;

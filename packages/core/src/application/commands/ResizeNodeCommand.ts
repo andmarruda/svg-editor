@@ -32,7 +32,12 @@ export class ResizeNodeCommand implements ICommand {
   }
 }
 
-function applyResize(node: SvgNode, handle: ResizeHandle, delta: Point, keepAspectRatio: boolean): SvgNode {
+function applyResize(
+  node: SvgNode,
+  handle: ResizeHandle,
+  delta: Point,
+  keepAspectRatio: boolean,
+): SvgNode {
   const bounds = BoundsCalculator.forNode(node);
   let { x, y, width, height } = bounds;
 
@@ -41,10 +46,20 @@ function applyResize(node: SvgNode, handle: ResizeHandle, delta: Point, keepAspe
   const isTop = handle.includes('top');
   const isBottom = handle.includes('bottom');
 
-  if (isLeft) { x += delta.x; width -= delta.x; }
-  if (isRight) { width += delta.x; }
-  if (isTop) { y += delta.y; height -= delta.y; }
-  if (isBottom) { height += delta.y; }
+  if (isLeft) {
+    x += delta.x;
+    width -= delta.x;
+  }
+  if (isRight) {
+    width += delta.x;
+  }
+  if (isTop) {
+    y += delta.y;
+    height -= delta.y;
+  }
+  if (isBottom) {
+    height += delta.y;
+  }
 
   width = Math.max(1, width);
   height = Math.max(1, height);
@@ -56,10 +71,17 @@ function applyResize(node: SvgNode, handle: ResizeHandle, delta: Point, keepAspe
   }
 
   switch (node.type) {
-    case 'rect': return { ...node, x, y, width, height };
-    case 'image': return { ...node, x, y, width, height };
-    case 'ellipse': return { ...node, cx: x + width / 2, cy: y + height / 2, rx: width / 2, ry: height / 2 };
-    case 'circle': { const r = Math.min(width, height) / 2; return { ...node, cx: x + r, cy: y + r, r }; }
-    default: return node;
+    case 'rect':
+      return { ...node, x, y, width, height };
+    case 'image':
+      return { ...node, x, y, width, height };
+    case 'ellipse':
+      return { ...node, cx: x + width / 2, cy: y + height / 2, rx: width / 2, ry: height / 2 };
+    case 'circle': {
+      const r = Math.min(width, height) / 2;
+      return { ...node, cx: x + r, cy: y + r, r };
+    }
+    default:
+      return node;
   }
 }

@@ -17,12 +17,7 @@ export interface Document {
 }
 
 export const Document = {
-  create(
-    id: DocumentId,
-    width: number,
-    height: number,
-    viewBox?: ViewBox,
-  ): Document {
+  create(id: DocumentId, width: number, height: number, viewBox?: ViewBox): Document {
     const vb = viewBox ?? { minX: 0, minY: 0, width, height };
     return {
       id,

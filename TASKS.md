@@ -14,7 +14,7 @@ Status: `[x]` done · `[ ]` pending · `[-]` in progress
 - [x] Value objects: `NodeId`, `DocumentId`, `Point`, `Size`, `BoundingBox`, `Transform`, `Color`, `Fill`, `Stroke`
 - [x] 107 testes unitários passando (100% dos value objects)
 - [x] Build sem erros (`vite` + `tsc`)
-- [ ] CI — GitHub Actions (lint + typecheck + test em cada PR)
+- [x] CI — GitHub Actions (lint + typecheck + test em cada PR)
 
 ---
 
@@ -393,17 +393,21 @@ Nota: candidatas avaliadas para boolean ops: `polygon-clipping@0.15.7` e `martin
 
 ## Phase 6 — V1 Stable
 
-- [ ] `@changeset/cli` configurado — CHANGELOG automático
-- [ ] TypeDoc — documentação da API pública de `@svg-editor/core`
-- [ ] README de cada package: instalação, uso básico, exemplos
-- [ ] Performance audit — SVG com 200 nós, todas as interações a 60fps
-- [ ] Accessibility pass — keyboard navigation, ARIA labels nos panels
-- [ ] Browser compatibility test — Chrome, Firefox, Safari, Edge
-- [ ] Publicar `@svg-editor/core@1.0.0`, `@svg-editor/react@1.0.0`, `@svg-editor/vue@1.0.0`
-- [ ] GitHub Pages — demo-react deployada
-- [ ] GitHub Release com changelog
+- [x] `@changeset/cli` configurado — CHANGELOG automático
+- [x] TypeDoc — documentação da API pública de `@svg-editor/core`
+- [x] README de cada package: instalação, uso básico, exemplos
+- [x] Performance audit — SVG com 200 nós, todas as interações a 60fps
+- [x] Accessibility pass — keyboard navigation, ARIA labels nos panels
+- [x] Browser compatibility test — Chrome, Firefox, Safari, Edge/WebKit
+- [x] Packages versionados para V1: `@svg-editor/core@1.0.0`, `@svg-editor/react@1.0.0`, `@svg-editor/vue@1.0.0`
+- [x] GitHub Actions — CI completo em PR/push
+- [x] GitHub Pages — workflow de deploy da `demo-react`
+- [x] GitHub Release — workflow com changelog via Changesets
+- [ ] Publicar V1 no npm
+- [ ] Executar deploy GitHub Pages
+- [ ] Criar GitHub Release
 
-**Deliverable Phase 6:** V1 estável no npm. Pronto para produção.
+**Deliverable Phase 6:** V1 estabilizada e release-ready. Publicação npm, deploy Pages e GitHub Release dependem de credenciais/execução externa.
 
 ---
 

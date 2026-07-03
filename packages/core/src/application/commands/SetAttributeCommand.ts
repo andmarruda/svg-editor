@@ -20,11 +20,15 @@ export class SetAttributeCommand<K extends keyof SvgNode> implements ICommand {
     const node = doc.nodes.get(this.id);
     if (!node) return doc;
     this.previousValue = node[this.key as keyof typeof node] as SvgNode[K];
-    return DocumentMutations.updateNode(doc, this.id, { [this.key]: this.value } as Partial<SvgNode>);
+    return DocumentMutations.updateNode(doc, this.id, {
+      [this.key]: this.value,
+    } as Partial<SvgNode>);
   }
 
   undo(doc: Document): Document {
     if (this.previousValue === undefined) return doc;
-    return DocumentMutations.updateNode(doc, this.id, { [this.key]: this.previousValue } as Partial<SvgNode>);
+    return DocumentMutations.updateNode(doc, this.id, {
+      [this.key]: this.previousValue,
+    } as Partial<SvgNode>);
   }
 }

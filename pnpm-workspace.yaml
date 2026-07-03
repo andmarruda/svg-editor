@@ -1,6 +1,6 @@
 packages:
-  - "apps/*"
-  - "packages/*"
-  - "tooling/*"
+  - 'apps/*'
+  - 'packages/*'
+  - 'tooling/*'
 allowBuilds:
   esbuild: true

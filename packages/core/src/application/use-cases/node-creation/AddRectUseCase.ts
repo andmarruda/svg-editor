@@ -16,7 +16,13 @@ export class AddRectUseCase {
     private readonly idGenerator: IIdGenerator,
   ) {}
 
-  execute(doc: Document, x: number, y: number, width: number, height: number): { doc: Document; id: NodeId } {
+  execute(
+    doc: Document,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ): { doc: Document; id: NodeId } {
     const id = NodeIdNS.from(this.idGenerator.generate());
     const rect: RectNode = {
       id,

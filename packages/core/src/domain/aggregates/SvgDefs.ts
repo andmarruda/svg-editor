@@ -59,9 +59,17 @@ export const ViewBox = {
     return `${vb.minX} ${vb.minY} ${vb.width} ${vb.height}`;
   },
   fromString(s: string): ViewBox {
-    const parts = s.trim().split(/[\s,]+/).map(Number);
+    const parts = s
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number);
     if (parts.length < 4) throw new Error(`Invalid viewBox: "${s}"`);
-    return { minX: parts[0] ?? 0, minY: parts[1] ?? 0, width: parts[2] ?? 0, height: parts[3] ?? 0 };
+    return {
+      minX: parts[0] ?? 0,
+      minY: parts[1] ?? 0,
+      width: parts[2] ?? 0,
+      height: parts[3] ?? 0,
+    };
   },
 } as const;
 

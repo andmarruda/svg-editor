@@ -8,7 +8,13 @@ import { ResizeNodeCommand } from '../../commands/ResizeNodeCommand';
 export class ResizeNodeUseCase {
   constructor(private readonly history: HistoryManager) {}
 
-  execute(doc: Document, id: NodeId, handle: ResizeHandle, delta: Point, keepAspectRatio: boolean): Document {
+  execute(
+    doc: Document,
+    id: NodeId,
+    handle: ResizeHandle,
+    delta: Point,
+    keepAspectRatio: boolean,
+  ): Document {
     return this.history.execute(new ResizeNodeCommand(id, handle, delta, keepAspectRatio), doc);
   }
 }

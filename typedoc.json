@@ -1,0 +1,13 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["packages/core/src/index.ts"],
+  "out": "docs/api/core",
+  "name": "@svg-editor/core API",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "readme": "packages/core/README.md",
+  "plugin": [],
+  "tsconfig": "packages/core/tsconfig.json"
+}

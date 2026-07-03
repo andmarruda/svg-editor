@@ -34,7 +34,8 @@ describe('parsePath', () => {
     const cmds = parsePath('M 0,0 A 10,20 45 0,1 30,40');
     expect(cmds[1]).toMatchObject({
       type: 'A',
-      rx: 10, ry: 20,
+      rx: 10,
+      ry: 20,
       xRotation: 45,
       largeArc: false,
       sweep: true,

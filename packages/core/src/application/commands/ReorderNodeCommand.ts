@@ -15,16 +15,21 @@ export class ReorderNodeCommand implements ICommand {
 
   execute(doc: Document): Document {
     const order = this.groupId
-      ? (() => { const g = doc.nodes.get(this.groupId!); return g?.type === 'group' ? g.children : []; })()
+      ? (() => {
+          const g = doc.nodes.get(this.groupId!);
+          return g?.type === 'group' ? g.children : [];
+        })()
       : doc.rootOrder;
     this.previousIndex = order.indexOf(this.id);
-    if (this.groupId) return DocumentMutations.reorderInGroup(doc, this.groupId, this.id, this.toIndex);
+    if (this.groupId)
+      return DocumentMutations.reorderInGroup(doc, this.groupId, this.id, this.toIndex);
     return DocumentMutations.reorderInRoot(doc, this.id, this.toIndex);
   }
 
   undo(doc: Document): Document {
     if (this.previousIndex === -1) return doc;
-    if (this.groupId) return DocumentMutations.reorderInGroup(doc, this.groupId, this.id, this.previousIndex);
+    if (this.groupId)
+      return DocumentMutations.reorderInGroup(doc, this.groupId, this.id, this.previousIndex);
     return DocumentMutations.reorderInRoot(doc, this.id, this.previousIndex);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@svg-editor/react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React adapter for @svg-editor/core",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -23,8 +23,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@svg-editor/adapter-utils": "workspace:*",
-    "@svg-editor/core": "workspace:*"
+    "@svg-editor/adapter-utils": "workspace:^",
+    "@svg-editor/core": "workspace:^"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

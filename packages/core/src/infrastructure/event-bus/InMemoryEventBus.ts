@@ -14,12 +14,17 @@ export class InMemoryEventBus implements IEventBus {
     }
   }
 
-  subscribe<T extends EditorDomainEvent>(type: T['type'], handler: (event: T) => void): Unsubscribe {
+  subscribe<T extends EditorDomainEvent>(
+    type: T['type'],
+    handler: (event: T) => void,
+  ): Unsubscribe {
     if (!this.handlers.has(type)) {
       this.handlers.set(type, new Set());
     }
     const set = this.handlers.get(type)!;
     set.add(handler as Handler);
-    return () => { set.delete(handler as Handler); };
+    return () => {
+      set.delete(handler as Handler);
+    };
   }
 }

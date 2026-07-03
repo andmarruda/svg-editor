@@ -35,9 +35,10 @@ export class FlipNodesCommand implements ICommand {
     if (!union) return doc;
 
     const center = BoundingBox.center(union);
-    const flipTransform = this.axis === 'horizontal'
-      ? Transform.of(-1, 0, 0, 1, center.x * 2, 0)
-      : Transform.of(1, 0, 0, -1, 0, center.y * 2);
+    const flipTransform =
+      this.axis === 'horizontal'
+        ? Transform.of(-1, 0, 0, 1, center.x * 2, 0)
+        : Transform.of(1, 0, 0, -1, 0, center.y * 2);
 
     return this.ids.reduce((d, id) => {
       const node = d.nodes.get(id);

@@ -1,6 +1,6 @@
 {
   "name": "@svg-editor/adapter-utils",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Shared adapter infrastructure for SVG editor UI packages",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -23,7 +23,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@svg-editor/core": "workspace:*"
+    "@svg-editor/core": "workspace:^"
   },
   "devDependencies": {
     "@svg-editor/tsconfig": "workspace:*",
