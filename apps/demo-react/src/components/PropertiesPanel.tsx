@@ -1,18 +1,11 @@
-import { useEditor, useSelection } from '@svg-editor/react';
-import type { SvgNode, NodeId } from '@svg-editor/core';
+import { useEditor, useNodeCapabilities, useSelection } from '@svg-editor/react';
+import type { SvgNode } from '@svg-editor/core';
 import { Fill, Color } from '@svg-editor/core';
-import type { IEditorApplication } from '@svg-editor/core';
-
-// Escape hatch for shape-specific attribute keys not in the union intersection
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function setAttr(editor: IEditorApplication, id: NodeId, key: string, value: unknown): void {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  (editor as any).setNodeAttribute(id, key, value);
-}
 
 export function PropertiesPanel() {
   const editor = useEditor();
   const { selectedNodes, isSingle, isEmpty } = useSelection();
+  const capabilityInfo = useNodeCapabilities(selectedNodes);
 
   if (isEmpty) {
     return (
@@ -25,7 +18,15 @@ export function PropertiesPanel() {
   const node = isSingle ? selectedNodes[0] : null;
 
   return (
-    <div style={{ padding: 12, fontSize: 12, borderBottom: '1px solid #eee', overflowY: 'auto', maxHeight: 300 }}>
+    <div
+      style={{
+        padding: 12,
+        fontSize: 12,
+        borderBottom: '1px solid #eee',
+        overflowY: 'auto',
+        maxHeight: 300,
+      }}
+    >
       <div style={{ fontWeight: 600, marginBottom: 8 }}>Properties</div>
 
       {node && (
@@ -40,57 +41,112 @@ export function PropertiesPanel() {
 
           <Field label="Opacity">
             <input
-              type="number" min={0} max={1} step={0.1}
+              type="number"
+              min={0}
+              max={1}
+              step={0.1}
               value={node.opacity}
-              onChange={(e) => editor.setNodeAttribute(node.id, 'opacity', Number(e.target.value))}
+              onChange={(e) => editor.setOpacity([node.id], Number(e.target.value))}
               style={{ width: '100%' }}
             />
           </Field>
 
-          <Field label="Fill">
-            <FillColorInput
-              fill={node.fill}
-              onSetFill={(fill) => editor.setNodeAttribute(node.id, 'fill', fill)}
-            />
-          </Field>
+          {capabilityInfo.some('canFill') && (
+            <Field label="Fill">
+              <FillColorInput
+                fill={node.fill}
+                onSetFill={(fill) => editor.setFill([node.id], fill)}
+              />
+            </Field>
+          )}
 
           {node.type === 'rect' && (
             <>
-              <Field label="X"><NumberInput value={node.x} onChange={(v) => setAttr(editor, node.id, 'x', v)} /></Field>
-              <Field label="Y"><NumberInput value={node.y} onChange={(v) => setAttr(editor, node.id, 'y', v)} /></Field>
-              <Field label="W"><NumberInput value={node.width} onChange={(v) => setAttr(editor, node.id, 'width', v)} /></Field>
-              <Field label="H"><NumberInput value={node.height} onChange={(v) => setAttr(editor, node.id, 'height', v)} /></Field>
-              <Field label="Rx"><NumberInput value={node.rx} onChange={(v) => setAttr(editor, node.id, 'rx', v)} /></Field>
+              <Field label="X">
+                <NumberInput
+                  value={node.x}
+                  onChange={(v) => editor.setRectGeometry(node.id, { x: v })}
+                />
+              </Field>
+              <Field label="Y">
+                <NumberInput
+                  value={node.y}
+                  onChange={(v) => editor.setRectGeometry(node.id, { y: v })}
+                />
+              </Field>
+              <Field label="W">
+                <NumberInput
+                  value={node.width}
+                  onChange={(v) => editor.setRectGeometry(node.id, { width: v })}
+                />
+              </Field>
+              <Field label="H">
+                <NumberInput
+                  value={node.height}
+                  onChange={(v) => editor.setRectGeometry(node.id, { height: v })}
+                />
+              </Field>
+              {capabilityInfo.some('canRoundCorners') && (
+                <Field label="Rx">
+                  <NumberInput
+                    value={node.rx}
+                    onChange={(v) => editor.setCornerRadii(node.id, { rx: v, ry: node.ry })}
+                  />
+                </Field>
+              )}
             </>
           )}
 
           {node.type === 'ellipse' && (
             <>
-              <Field label="Cx"><NumberInput value={node.cx} onChange={(v) => setAttr(editor, node.id, 'cx', v)} /></Field>
-              <Field label="Cy"><NumberInput value={node.cy} onChange={(v) => setAttr(editor, node.id, 'cy', v)} /></Field>
-              <Field label="Rx"><NumberInput value={node.rx} onChange={(v) => setAttr(editor, node.id, 'rx', v)} /></Field>
-              <Field label="Ry"><NumberInput value={node.ry} onChange={(v) => setAttr(editor, node.id, 'ry', v)} /></Field>
+              <Field label="Cx">
+                <NumberInput
+                  value={node.cx}
+                  onChange={(v) => editor.setEllipseGeometry(node.id, { cx: v })}
+                />
+              </Field>
+              <Field label="Cy">
+                <NumberInput
+                  value={node.cy}
+                  onChange={(v) => editor.setEllipseGeometry(node.id, { cy: v })}
+                />
+              </Field>
+              <Field label="Rx">
+                <NumberInput
+                  value={node.rx}
+                  onChange={(v) => editor.setEllipseGeometry(node.id, { rx: v })}
+                />
+              </Field>
+              <Field label="Ry">
+                <NumberInput
+                  value={node.ry}
+                  onChange={(v) => editor.setEllipseGeometry(node.id, { ry: v })}
+                />
+              </Field>
             </>
           )}
 
-          {node.type === 'text' && (
+          {capabilityInfo.some('canEditText') && node.type === 'text' && (
             <>
               <Field label="Content">
                 <input
                   value={node.content}
-                  onChange={(e) => setAttr(editor, node.id, 'content', e.target.value)}
+                  onChange={(e) => editor.replaceTextContent(node.id, e.target.value)}
                   style={{ width: '100%' }}
                 />
               </Field>
-              <Field label="Size"><NumberInput value={node.fontSize} onChange={(v) => setAttr(editor, node.id, 'fontSize', v)} /></Field>
+              <Field label="Size">
+                <NumberInput
+                  value={node.fontSize}
+                  onChange={(v) => editor.setTextStyle(node.id, { fontSize: v })}
+                />
+              </Field>
             </>
           )}
         </>
       )}
 
-      {!isSingle && (
-        <div style={{ color: '#666' }}>{selectedNodes.length} nodes selected</div>
-      )}
+      {!isSingle && <div style={{ color: '#666' }}>{selectedNodes.length} nodes selected</div>}
     </div>
   );
 }
@@ -115,7 +171,13 @@ function NumberInput({ value, onChange }: { value: number; onChange: (v: number)
   );
 }
 
-function FillColorInput({ fill, onSetFill }: { fill: SvgNode['fill']; onSetFill: (fill: SvgNode['fill']) => void }) {
+function FillColorInput({
+  fill,
+  onSetFill,
+}: {
+  fill: SvgNode['fill'];
+  onSetFill: (fill: SvgNode['fill']) => void;
+}) {
   if (fill.kind === 'none') {
     return <button onClick={() => onSetFill(Fill.solid(Color.BLACK))}>Add fill</button>;
   }

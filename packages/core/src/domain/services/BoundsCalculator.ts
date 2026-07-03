@@ -102,8 +102,8 @@ function rawBounds(node: SvgNode): BoundingBox {
     }
 
     case 'text':
-      // Text bounds are approximate — actual rendering depends on font metrics
-      return BoundingBox.of(node.x, node.y - node.fontSize, node.fontSize * node.content.length * 0.6, node.fontSize);
+      // Text bounds are approximate; exact metrics depend on renderer/font availability.
+      return textBounds(node);
 
     case 'image':
       return BoundingBox.of(node.x, node.y, node.width, node.height);
@@ -112,6 +112,19 @@ function rawBounds(node: SvgNode): BoundingBox {
     case 'use':
       return BoundingBox.ZERO;
   }
+}
+
+function textBounds(node: Extract<SvgNode, { type: 'text' }>): BoundingBox {
+  const lines = node.content.split('\n');
+  const lineHeight = node.fontSize * node.lineHeight;
+  const runWidth = node.runs.reduce((total, run) => {
+    const size = run.style.fontSize ?? node.fontSize;
+    return total + run.content.length * size * 0.6;
+  }, 0);
+  const plainWidth = Math.max(...lines.map((line) => line.length), 0) * node.fontSize * 0.6;
+  const width = Math.max(runWidth, plainWidth);
+  const height = Math.max(1, lines.length) * lineHeight;
+  return BoundingBox.of(node.x, node.y - node.fontSize, width, height);
 }
 
 function applyTransformToBounds(box: BoundingBox, transform: Transform): BoundingBox {

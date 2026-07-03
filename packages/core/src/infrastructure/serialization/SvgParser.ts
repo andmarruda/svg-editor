@@ -82,18 +82,30 @@ function parseElement(el: Element, inherited: InheritedAttrs): SvgNode | null {
   const attrs = mergeAttrs(el, inherited);
 
   switch (tag) {
-    case 'rect': return parseRect(el, attrs);
-    case 'circle': return parseCircle(el, attrs);
-    case 'ellipse': return parseEllipse(el, attrs);
-    case 'line': return parseLine(el, attrs);
-    case 'polyline': return parsePolyline(el, attrs);
-    case 'polygon': return parsePolygon(el, attrs);
-    case 'path': return parsePath2(el, attrs);
-    case 'text': return parseText(el, attrs);
-    case 'image': return parseImage(el, attrs);
-    case 'g': return parseGroup(el, attrs);
-    case 'use': return parseUse(el, attrs);
-    default: return parseRawXmlNode(el, attrs);
+    case 'rect':
+      return parseRect(el, attrs);
+    case 'circle':
+      return parseCircle(el, attrs);
+    case 'ellipse':
+      return parseEllipse(el, attrs);
+    case 'line':
+      return parseLine(el, attrs);
+    case 'polyline':
+      return parsePolyline(el, attrs);
+    case 'polygon':
+      return parsePolygon(el, attrs);
+    case 'path':
+      return parsePath2(el, attrs);
+    case 'text':
+      return parseText(el, attrs);
+    case 'image':
+      return parseImage(el, attrs);
+    case 'g':
+      return parseGroup(el, attrs);
+    case 'use':
+      return parseUse(el, attrs);
+    default:
+      return parseRawXmlNode(el, attrs);
   }
 }
 
@@ -116,6 +128,11 @@ interface InheritedAttrs {
   'font-size'?: string;
   'font-weight'?: string;
   'font-style'?: string;
+  'text-anchor'?: string;
+  'dominant-baseline'?: string;
+  'letter-spacing'?: string;
+  'word-spacing'?: string;
+  'text-decoration'?: string;
 }
 
 function getInheritedAttrs(parent: InheritedAttrs): InheritedAttrs {
@@ -229,18 +246,66 @@ function parsePath2(el: Element, attrs: Record<string, string>): SvgNode {
 }
 
 function parseText(el: Element, attrs: Record<string, string>): SvgNode {
+  const runs = Array.from(el.children)
+    .filter((child) => child.tagName.toLowerCase() === 'tspan')
+    .map((child) => parseTextRun(child, attrs));
+  const content =
+    runs.length > 0 ? runs.map((run) => run.content).join('') : (el.textContent ?? '');
   return {
     ...baseNode(el, attrs),
     type: 'text',
     x: parseFloat(attrs['x'] ?? '0') || 0,
     y: parseFloat(attrs['y'] ?? '0') || 0,
-    content: el.textContent?.trim() ?? '',
+    content,
     fontFamily: attrs['font-family'] ?? 'sans-serif',
     fontSize: parseFloat(attrs['font-size'] ?? '16') || 16,
-    fontWeight: (attrs['font-weight'] ?? 'normal') as import('../../domain/entities/TextNode').FontWeight,
+    fontWeight: (attrs['font-weight'] ??
+      'normal') as import('../../domain/entities/TextNode').FontWeight,
     fontStyle: (attrs['font-style'] as 'normal' | 'italic' | 'oblique') ?? 'normal',
     textAnchor: (attrs['text-anchor'] as 'start' | 'middle' | 'end') ?? 'start',
+    dominantBaseline:
+      (attrs['dominant-baseline'] as import('../../domain/entities/TextNode').DominantBaseline) ??
+      'auto',
     letterSpacing: parseFloat(attrs['letter-spacing'] ?? '0') || 0,
+    wordSpacing: parseFloat(attrs['word-spacing'] ?? '0') || 0,
+    textDecoration:
+      (attrs['text-decoration'] as import('../../domain/entities/TextNode').TextDecoration) ??
+      'none',
+    lineHeight: parseFloat(attrs['data-line-height'] ?? '1.2') || 1.2,
+    runs,
+  };
+}
+
+function parseTextRun(
+  el: Element,
+  parentAttrs: Record<string, string>,
+): import('../../domain/entities/TextNode').TextRun {
+  const attrs = mergeAttrs(el, parentAttrs as InheritedAttrs);
+  const style: import('../../domain/entities/TextNode').TextRunStyle = {};
+  const fill = attrs['fill']
+    ? parseFillAttr(attrs['fill'], parseFloat(attrs['fill-opacity'] ?? '1') || 1)
+    : undefined;
+  const stroke = attrs['stroke']
+    ? parseStrokeAttrs(attrs as Record<string, string | undefined>)
+    : undefined;
+  if (fill !== undefined) Object.assign(style, { fill });
+  if (stroke !== undefined) Object.assign(style, { stroke });
+  if (attrs['font-family'] !== undefined)
+    Object.assign(style, { fontFamily: attrs['font-family'] });
+  if (attrs['font-size'] !== undefined)
+    Object.assign(style, { fontSize: parseFloat(attrs['font-size']) });
+  if (attrs['font-weight'] !== undefined)
+    Object.assign(style, { fontWeight: attrs['font-weight'] });
+  if (attrs['font-style'] !== undefined) Object.assign(style, { fontStyle: attrs['font-style'] });
+  if (attrs['letter-spacing'] !== undefined)
+    Object.assign(style, { letterSpacing: parseFloat(attrs['letter-spacing']) });
+  if (attrs['word-spacing'] !== undefined)
+    Object.assign(style, { wordSpacing: parseFloat(attrs['word-spacing']) });
+  if (attrs['text-decoration'] !== undefined)
+    Object.assign(style, { textDecoration: attrs['text-decoration'] });
+  return {
+    content: el.textContent ?? '',
+    style,
   };
 }
 
@@ -318,7 +383,8 @@ function parseDef(el: Element): SvgDef | null {
       x2: parseFloat(el.getAttribute('x2') ?? '1'),
       y2: parseFloat(el.getAttribute('y2') ?? '0'),
       stops,
-      gradientUnits: (el.getAttribute('gradientUnits') ?? 'objectBoundingBox') as 'objectBoundingBox',
+      gradientUnits: (el.getAttribute('gradientUnits') ??
+        'objectBoundingBox') as 'objectBoundingBox',
     };
   }
 
@@ -335,7 +401,8 @@ function parseDef(el: Element): SvgDef | null {
       fx: parseFloat(el.getAttribute('fx') ?? String(cx)),
       fy: parseFloat(el.getAttribute('fy') ?? String(cy)),
       stops,
-      gradientUnits: (el.getAttribute('gradientUnits') ?? 'objectBoundingBox') as 'objectBoundingBox',
+      gradientUnits: (el.getAttribute('gradientUnits') ??
+        'objectBoundingBox') as 'objectBoundingBox',
     };
   }
 

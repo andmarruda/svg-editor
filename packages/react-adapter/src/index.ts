@@ -10,6 +10,8 @@ export { useHistory } from './hooks/useHistory';
 export type { HistoryActions } from './hooks/useHistory';
 export { useViewport } from './hooks/useViewport';
 export type { ViewportActions } from './hooks/useViewport';
+export { useNodeCapabilities } from './hooks/useNodeCapabilities';
+export type { NodeCapabilitiesInfo } from './hooks/useNodeCapabilities';
 
 // ── Components ───────────────────────────────────────────────────────────────
 export { SvgEditorRoot } from './components/SvgEditorRoot';

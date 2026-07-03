@@ -1,5 +1,6 @@
 import type { Document } from '../../domain/aggregates/Document';
 import type { SvgNode } from '../../domain/entities/SvgNode';
+import type { TextRunStyle } from '../../domain/entities/TextNode';
 import type { SvgDef } from '../../domain/aggregates/SvgDefs';
 import type { NodeId } from '../../domain/value-objects/NodeId';
 import { ViewBox } from '../../domain/aggregates/SvgDefs';
@@ -17,7 +18,7 @@ export function serializeSvg(doc: Document): string {
   lines.push(`<?xml version="1.0" encoding="UTF-8"?>`);
   lines.push(
     `<svg xmlns="${doc.metadata.xmlns}" xmlns:xlink="${doc.metadata.xmlnsXlink}" ` +
-    `width="${fmt(doc.width)}" height="${fmt(doc.height)}" viewBox="${vb}">`,
+      `width="${fmt(doc.width)}" height="${fmt(doc.height)}" viewBox="${vb}">`,
   );
 
   if (doc.metadata.title) {
@@ -54,16 +55,24 @@ function serializeNode(node: SvgNode, doc: Document, depth: number): string[] {
 
   switch (node.type) {
     case 'rect':
-      return [`${indent}<rect ${baseAttrs} x="${fmt(node.x)}" y="${fmt(node.y)}" width="${fmt(node.width)}" height="${fmt(node.height)}"${node.rx ? ` rx="${fmt(node.rx)}"` : ''}${node.ry ? ` ry="${fmt(node.ry)}"` : ''}/>`];
+      return [
+        `${indent}<rect ${baseAttrs} x="${fmt(node.x)}" y="${fmt(node.y)}" width="${fmt(node.width)}" height="${fmt(node.height)}"${node.rx ? ` rx="${fmt(node.rx)}"` : ''}${node.ry ? ` ry="${fmt(node.ry)}"` : ''}/>`,
+      ];
 
     case 'circle':
-      return [`${indent}<circle ${baseAttrs} cx="${fmt(node.cx)}" cy="${fmt(node.cy)}" r="${fmt(node.r)}"/>`];
+      return [
+        `${indent}<circle ${baseAttrs} cx="${fmt(node.cx)}" cy="${fmt(node.cy)}" r="${fmt(node.r)}"/>`,
+      ];
 
     case 'ellipse':
-      return [`${indent}<ellipse ${baseAttrs} cx="${fmt(node.cx)}" cy="${fmt(node.cy)}" rx="${fmt(node.rx)}" ry="${fmt(node.ry)}"/>`];
+      return [
+        `${indent}<ellipse ${baseAttrs} cx="${fmt(node.cx)}" cy="${fmt(node.cy)}" rx="${fmt(node.rx)}" ry="${fmt(node.ry)}"/>`,
+      ];
 
     case 'line':
-      return [`${indent}<line ${baseAttrs} x1="${fmt(node.x1)}" y1="${fmt(node.y1)}" x2="${fmt(node.x2)}" y2="${fmt(node.y2)}"/>`];
+      return [
+        `${indent}<line ${baseAttrs} x1="${fmt(node.x1)}" y1="${fmt(node.y1)}" x2="${fmt(node.x2)}" y2="${fmt(node.y2)}"/>`,
+      ];
 
     case 'polyline':
       return [`${indent}<polyline ${baseAttrs} points="${serializePoints(node.points)}"/>`];
@@ -75,19 +84,13 @@ function serializeNode(node: SvgNode, doc: Document, depth: number): string[] {
       return [`${indent}<path ${baseAttrs} d="${serializePath(node.commands)}"/>`];
 
     case 'text':
-      return [
-        `${indent}<text ${baseAttrs} x="${fmt(node.x)}" y="${fmt(node.y)}" ` +
-        `font-family="${escAttr(node.fontFamily)}" font-size="${fmt(node.fontSize)}" ` +
-        `font-weight="${node.fontWeight}" font-style="${node.fontStyle}" ` +
-        `text-anchor="${node.textAnchor}"${node.letterSpacing ? ` letter-spacing="${fmt(node.letterSpacing)}"` : ''}>` +
-        `${escXml(node.content)}</text>`,
-      ];
+      return serializeTextNode(node, baseAttrs, indent);
 
     case 'image':
       return [
         `${indent}<image ${baseAttrs} x="${fmt(node.x)}" y="${fmt(node.y)}" ` +
-        `width="${fmt(node.width)}" height="${fmt(node.height)}" ` +
-        `href="${escAttr(node.href)}" preserveAspectRatio="${node.preserveAspectRatio}"/>`,
+          `width="${fmt(node.width)}" height="${fmt(node.height)}" ` +
+          `href="${escAttr(node.href)}" preserveAspectRatio="${node.preserveAspectRatio}"/>`,
       ];
 
     case 'group': {
@@ -101,7 +104,9 @@ function serializeNode(node: SvgNode, doc: Document, depth: number): string[] {
     }
 
     case 'use':
-      return [`${indent}<use ${baseAttrs} href="#${node.href}" x="${fmt(node.x)}" y="${fmt(node.y)}"${node.width ? ` width="${fmt(node.width)}"` : ''}${node.height ? ` height="${fmt(node.height)}"` : ''}/>`];
+      return [
+        `${indent}<use ${baseAttrs} href="#${node.href}" x="${fmt(node.x)}" y="${fmt(node.y)}"${node.width ? ` width="${fmt(node.width)}"` : ''}${node.height ? ` height="${fmt(node.height)}"` : ''}/>`,
+      ];
   }
 }
 
@@ -112,7 +117,8 @@ function serializeDef(def: SvgDef): string[] {
 
   if (def.kind === 'linear-gradient') {
     const stops = def.stops.map(
-      (s) => `  <stop offset="${s.offset}" stop-color="${Color.toHex(s.color)}" stop-opacity="${s.opacity}"/>`,
+      (s) =>
+        `  <stop offset="${s.offset}" stop-color="${Color.toHex(s.color)}" stop-opacity="${s.opacity}"/>`,
     );
     return [
       `<linearGradient id="${def.id}" x1="${def.x1}" y1="${def.y1}" x2="${def.x2}" y2="${def.y2}" gradientUnits="${def.gradientUnits}">`,
@@ -123,7 +129,8 @@ function serializeDef(def: SvgDef): string[] {
 
   if (def.kind === 'radial-gradient') {
     const stops = def.stops.map(
-      (s) => `  <stop offset="${s.offset}" stop-color="${Color.toHex(s.color)}" stop-opacity="${s.opacity}"/>`,
+      (s) =>
+        `  <stop offset="${s.offset}" stop-color="${Color.toHex(s.color)}" stop-opacity="${s.opacity}"/>`,
     );
     return [
       `<radialGradient id="${def.id}" cx="${def.cx}" cy="${def.cy}" r="${def.r}" fx="${def.fx}" fy="${def.fy}" gradientUnits="${def.gradientUnits}">`,
@@ -146,24 +153,86 @@ function buildBaseAttrs(node: SvgNode): string {
   const fillStr = serializeFill(node.fill);
   parts.push(`fill="${fillStr}"`);
 
-  if (Stroke.isVisible(node.stroke)) {
+  if (node.metadata['strokeDefId']) {
+    parts.push(`stroke="url(#${escAttr(node.metadata['strokeDefId'])})"`);
+  } else if (Stroke.isVisible(node.stroke)) {
     parts.push(`stroke="${Color.toHex(node.stroke.color)}"`);
     if (node.stroke.width !== 1) parts.push(`stroke-width="${fmt(node.stroke.width)}"`);
     if (node.stroke.opacity !== 1) parts.push(`stroke-opacity="${fmt(node.stroke.opacity)}"`);
     if (node.stroke.lineCap !== 'butt') parts.push(`stroke-linecap="${node.stroke.lineCap}"`);
     if (node.stroke.lineJoin !== 'miter') parts.push(`stroke-linejoin="${node.stroke.lineJoin}"`);
-    if (node.stroke.dashArray.length > 0) parts.push(`stroke-dasharray="${node.stroke.dashArray.join(' ')}"`);
+    if (node.stroke.dashArray.length > 0)
+      parts.push(`stroke-dasharray="${node.stroke.dashArray.join(' ')}"`);
   } else {
     parts.push('stroke="none"');
   }
 
   if (node.opacity !== 1) parts.push(`opacity="${fmt(node.opacity)}"`);
   if (!node.visibility) parts.push('visibility="hidden"');
+  if (node.metadata['clipPathId'])
+    parts.push(`clip-path="url(#${escAttr(node.metadata['clipPathId'])})"`);
 
   const transformStr = serializeTransform(node.transform);
   if (transformStr) parts.push(`transform="${transformStr}"`);
 
   return parts.join(' ');
+}
+
+function serializeTextNode(
+  node: Extract<SvgNode, { type: 'text' }>,
+  baseAttrs: string,
+  indent: string,
+): string[] {
+  const textAttrs =
+    `${baseAttrs} x="${fmt(node.x)}" y="${fmt(node.y)}" ` +
+    `font-family="${escAttr(node.fontFamily)}" font-size="${fmt(node.fontSize)}" ` +
+    `font-weight="${node.fontWeight}" font-style="${node.fontStyle}" text-anchor="${node.textAnchor}" ` +
+    `dominant-baseline="${node.dominantBaseline}"` +
+    `${node.letterSpacing ? ` letter-spacing="${fmt(node.letterSpacing)}"` : ''}` +
+    `${node.wordSpacing ? ` word-spacing="${fmt(node.wordSpacing)}"` : ''}` +
+    `${node.textDecoration !== 'none' ? ` text-decoration="${node.textDecoration}"` : ''}` +
+    `${node.lineHeight !== 1.2 ? ` data-line-height="${fmt(node.lineHeight)}"` : ''}`;
+
+  if (node.runs.length > 0) {
+    const lines = [`${indent}<text ${textAttrs}>`];
+    for (const run of node.runs) {
+      lines.push(
+        `${indent}  <tspan${serializeTextRunStyle(run.style)}>${escXml(run.content)}</tspan>`,
+      );
+    }
+    lines.push(`${indent}</text>`);
+    return lines;
+  }
+
+  if (node.content.includes('\n')) {
+    const lines = [`${indent}<text ${textAttrs}>`];
+    node.content.split('\n').forEach((line, index) => {
+      const dy = index === 0 ? 0 : node.fontSize * node.lineHeight;
+      lines.push(
+        `${indent}  <tspan x="${fmt(node.x)}"${index === 0 ? '' : ` dy="${fmt(dy)}"`}>${escXml(line)}</tspan>`,
+      );
+    });
+    lines.push(`${indent}</text>`);
+    return lines;
+  }
+
+  return [`${indent}<text ${textAttrs}>${escXml(node.content)}</text>`];
+}
+
+function serializeTextRunStyle(style: TextRunStyle): string {
+  const parts: string[] = [];
+  if (style.fill) parts.push(`fill="${serializeFill(style.fill)}"`);
+  if (style.stroke && Stroke.isVisible(style.stroke))
+    parts.push(`stroke="${Color.toHex(style.stroke.color)}"`);
+  if (style.fontFamily) parts.push(`font-family="${escAttr(style.fontFamily)}"`);
+  if (style.fontSize !== undefined) parts.push(`font-size="${fmt(style.fontSize)}"`);
+  if (style.fontWeight !== undefined) parts.push(`font-weight="${style.fontWeight}"`);
+  if (style.fontStyle) parts.push(`font-style="${style.fontStyle}"`);
+  if (style.letterSpacing !== undefined) parts.push(`letter-spacing="${fmt(style.letterSpacing)}"`);
+  if (style.wordSpacing !== undefined) parts.push(`word-spacing="${fmt(style.wordSpacing)}"`);
+  if (style.textDecoration && style.textDecoration !== 'none')
+    parts.push(`text-decoration="${style.textDecoration}"`);
+  return parts.length > 0 ? ` ${parts.join(' ')}` : '';
 }
 
 function serializeFill(fill: Fill): string {

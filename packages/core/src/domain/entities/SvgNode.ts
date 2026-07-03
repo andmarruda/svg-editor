@@ -20,4 +20,16 @@ export type SvgNode =
   | GroupNode
   | UseNode;
 
-export type { RectNode, EllipseNode, CircleNode, LineNode, PolylineNode, PolygonNode, PathNode, TextNode, ImageNode, GroupNode, UseNode };
+export type {
+  RectNode,
+  EllipseNode,
+  CircleNode,
+  LineNode,
+  PolylineNode,
+  PolygonNode,
+  PathNode,
+  TextNode,
+  ImageNode,
+  GroupNode,
+  UseNode,
+};

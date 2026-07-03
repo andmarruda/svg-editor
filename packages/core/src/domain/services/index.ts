@@ -1,3 +1,10 @@
 export { BoundsCalculator } from './BoundsCalculator';
+export { GeometryService } from './GeometryService';
 export { HitTesting } from './HitTesting';
+export { LayoutService } from './LayoutService';
 export { TransformService } from './TransformService';
+export { NodeCapabilities } from './NodeCapabilities';
+export { ShapeFactory } from './ShapeFactory';
+export type { AlignTarget, HorizontalAlign, VerticalAlign } from './LayoutService';
+export type { EditableAttribute, EditableAttributeKind } from './NodeCapabilities';
+export type { ShapePreset, ShapePresetGeometry } from './ShapeFactory';
