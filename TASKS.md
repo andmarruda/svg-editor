@@ -333,59 +333,59 @@ Nota: candidatas avaliadas para boolean ops: `polygon-clipping@0.15.7` e `martin
 
 ### 5.1 React Adapter Capability Sync (`packages/react-adapter/`)
 
-- [ ] Expor hooks/helpers para todas as capabilities novas do core
-- [ ] Atualizar `Canvas` para criação de line, circle, polyline, polygon, path, image e presets geométricos
-- [ ] Atualizar `SelectionOverlay` com rotation handle, multi-select resize e transformações absolutas
-- [ ] Atualizar propriedades derivadas de `NodeCapabilities`
-- [ ] Suportar edição de imagem: href, preserveAspectRatio, fit/crop e dimensões
-- [ ] Suportar edição de texto rico com runs/tspans quando disponível no core
-- [ ] Suportar edição de gradients, defs, stroke avançado e styles/tokens
-- [ ] Expor comandos de align, distribute, arrange, match size e layout helpers
-- [ ] Testes de adapter para garantir que as novas APIs do core chegam ao React sem escape hatch
+- [x] Expor hooks/helpers para todas as capabilities novas do core
+- [x] Atualizar `Canvas` para criação de line, circle, polyline, polygon, path, image e presets geométricos
+- [x] Atualizar `SelectionOverlay` com rotation handle, multi-select resize e transformações absolutas
+- [x] Atualizar propriedades derivadas de `NodeCapabilities`
+- [x] Suportar edição de imagem: href, preserveAspectRatio, fit/crop e dimensões
+- [x] Suportar edição de texto rico com runs/tspans quando disponível no core
+- [x] Suportar edição de gradients, defs, stroke avançado e styles/tokens
+- [x] Expor comandos de align, distribute, arrange, match size e layout helpers
+- [x] Testes de adapter para garantir que as novas APIs do core chegam ao React sem escape hatch
 
 ### 5.2 Demo React (`apps/demo-react/`)
 
-- [ ] Toolbar com todas as ferramentas de criação suportadas pelo core
-- [ ] Inserção/importação de imagem
-- [ ] Painel de propriedades orientado por `NodeCapabilities`
-- [ ] Controles de texto: fonte, cor, rich text, peso, estilo, spacing e multi-linha
-- [ ] Controles de stroke avançado
-- [ ] Controles de gradients, styles e tokens
-- [ ] Comandos de alignment/distribution no menubar
-- [ ] Demo de criação programática a partir de uma spec declarativa
+- [x] Toolbar com todas as ferramentas de criação suportadas pelo core
+- [x] Inserção/importação de imagem
+- [x] Painel de propriedades orientado por `NodeCapabilities`
+- [x] Controles de texto: fonte, cor, rich text, peso, estilo, spacing e multi-linha
+- [x] Controles de stroke avançado
+- [x] Controles de gradients, styles e tokens
+- [x] Comandos de alignment/distribution no menubar
+- [x] Demo de criação programática a partir de uma spec declarativa
 
 ### 5.3 Vue Adapter (`packages/vue-adapter/`)
 
-- [ ] package.json, tsconfig, vite.config
-- [ ] `useEditor()` composable
-- [ ] `useEditorState()` — `readonly(ref(app.getState()))` via `app.subscribe`
-- [ ] `useSelection()`, `useHistory()`, `useViewport()` composables
-- [ ] Composables para capabilities novas: node creation, image, rich text, gradients, styles, layout helpers
-- [ ] `SvgEditorRoot.vue`, `Canvas.vue`, `SelectionOverlay.vue`, `MarqueeRect.vue`
-- [ ] `SvgDomRenderer` (mesmo da react-adapter, extraído para pacote compartilhado se necessário)
-- [ ] Paridade de capability surface com `packages/react-adapter`
-- [ ] Testes com `@vue/test-utils`
+- [x] package.json, tsconfig, vite.config
+- [x] `useEditor()` composable
+- [x] `useEditorState()` — `readonly(ref(app.getState()))` via `app.subscribe`
+- [x] `useSelection()`, `useHistory()`, `useViewport()` composables
+- [x] Composables para capabilities novas: node creation, image, rich text, gradients, styles, layout helpers
+- [x] `SvgEditorRoot.vue`, `Canvas.vue`, `SelectionOverlay.vue`, `MarqueeRect.vue`
+- [x] `SvgDomRenderer` (mesmo da react-adapter, extraído para pacote compartilhado se necessário)
+- [x] Paridade de capability surface com `packages/react-adapter`
+- [x] Testes com `@vue/test-utils`
 
 ### 5.4 Demo Vue (`apps/demo-vue/`)
 
-- [ ] Paridade completa com `apps/demo-react`
+- [x] Paridade completa com `apps/demo-react`
 
 ### 5.5 Shared Adapter Infrastructure
 
-- [ ] Extrair renderer DOM compartilhado se React e Vue divergirem
-- [ ] Extrair helpers de pointer/keyboard interaction reutilizáveis
-- [ ] Extrair mapeamento de capability → controls para reduzir duplicação entre demos
-- [ ] Garantir que React e Vue consumam o mesmo contrato público do core
-- [ ] Testes de compatibilidade entre adapters para fluxos principais
+- [x] Extrair renderer DOM compartilhado se React e Vue divergirem
+- [x] Extrair helpers de pointer/keyboard interaction reutilizáveis
+- [x] Extrair mapeamento de capability → controls para reduzir duplicação entre demos
+- [x] Garantir que React e Vue consumam o mesmo contrato público do core
+- [x] Testes de compatibilidade entre adapters para fluxos principais
 
 ### 5.6 Features de Polish (React e Vue)
 
-- [ ] Snap-to-grid (overlay layer, sem mudanças no domínio)
-- [ ] Snap-to-object guides (linhas de alinhamento inteligentes)
-- [ ] Multi-select resize — resize da bounding box de todos selecionados
-- [ ] Rotation handle na selection overlay
-- [ ] Color picker para fill e stroke
-- [ ] Zoom controls (botões +/- + % display)
+- [x] Snap-to-grid (overlay layer, sem mudanças no domínio)
+- [x] Snap-to-object guides (linhas de alinhamento inteligentes)
+- [x] Multi-select resize — resize da bounding box de todos selecionados
+- [x] Rotation handle na selection overlay
+- [x] Color picker para fill e stroke
+- [x] Zoom controls (botões +/- + % display)
 
 **Deliverable Phase 5:** React e Vue consomem a mesma superfície de capabilities do core. `apps/demo-react` e `apps/demo-vue` demonstram todas as capabilities principais. Ambos os adapters publicados no npm (canary). Ambas as demos deployadas.
 

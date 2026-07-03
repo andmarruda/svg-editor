@@ -3,6 +3,7 @@ import { Toolbar } from './components/Toolbar';
 import { PropertiesPanel } from './components/PropertiesPanel';
 import { LayersPanel } from './components/LayersPanel';
 import { MenuBar } from './components/MenuBar';
+import { ZoomControls } from './components/ZoomControls';
 
 export function App() {
   return (
@@ -14,8 +15,17 @@ export function App() {
           <div style={{ flex: 1, position: 'relative', background: '#f0f0f0' }}>
             <Canvas style={{ width: '100%', height: '100%' }} />
             <SelectionOverlay />
+            <ZoomControls />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', width: 240, borderLeft: '1px solid #ddd', background: 'white' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: 240,
+              borderLeft: '1px solid #ddd',
+              background: 'white',
+            }}
+          >
             <PropertiesPanel />
             <LayersPanel />
           </div>

@@ -12,6 +12,8 @@ export { useViewport } from './hooks/useViewport';
 export type { ViewportActions } from './hooks/useViewport';
 export { useNodeCapabilities } from './hooks/useNodeCapabilities';
 export type { NodeCapabilitiesInfo } from './hooks/useNodeCapabilities';
+export { useEditorCapabilities } from './hooks/useEditorCapabilities';
+export type { EditorCapabilityActions } from './hooks/useEditorCapabilities';
 
 // ── Components ───────────────────────────────────────────────────────────────
 export { SvgEditorRoot } from './components/SvgEditorRoot';

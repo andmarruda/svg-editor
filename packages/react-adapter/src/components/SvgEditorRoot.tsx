@@ -23,9 +23,5 @@ export function SvgEditorRoot({ children, editor: externalEditor, storage }: Svg
     });
   }, [externalEditor]);
 
-  return (
-    <EditorContext.Provider value={editor}>
-      {children}
-    </EditorContext.Provider>
-  );
+  return <EditorContext.Provider value={editor}>{children}</EditorContext.Provider>;
 }

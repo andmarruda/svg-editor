@@ -15,9 +15,12 @@ export function useViewport(): ViewportActions {
   const { viewTransform } = useEditorState();
   const editor = useEditor();
 
-  const setViewTransform = useCallback((t: Transform) => {
-    editor.setViewTransform(t);
-  }, [editor]);
+  const setViewTransform = useCallback(
+    (t: Transform) => {
+      editor.setViewTransform(t);
+    },
+    [editor],
+  );
 
   const resetView = useCallback(() => {
     editor.setViewTransform(IDENTITY_TRANSFORM);

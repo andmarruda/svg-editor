@@ -1,0 +1,36 @@
+{
+  "name": "@svg-editor/adapter-utils",
+  "version": "0.0.1",
+  "description": "Shared adapter infrastructure for SVG editor UI packages",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@svg-editor/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@svg-editor/tsconfig": "workspace:*",
+    "@svg-editor/vitest-config": "workspace:*",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.3.0",
+    "vitest": "^3.0.4"
+  }
+}

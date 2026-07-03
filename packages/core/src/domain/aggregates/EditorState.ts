@@ -2,7 +2,19 @@ import type { Document } from './Document';
 import type { Selection } from './Selection';
 import type { Transform } from '../value-objects/Transform';
 
-export type ToolType = 'select' | 'rect' | 'ellipse' | 'text' | 'pan' | 'image';
+export type ToolType =
+  | 'select'
+  | 'rect'
+  | 'ellipse'
+  | 'circle'
+  | 'line'
+  | 'polyline'
+  | 'polygon'
+  | 'path'
+  | 'text'
+  | 'image'
+  | 'shape'
+  | 'pan';
 
 export interface EditorState {
   readonly document: Document;

@@ -1,0 +1,11 @@
+{
+  "extends": "@svg-editor/tsconfig/base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "preserve",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vue"]
+  },
+  "include": ["src", "src/**/*.vue"]
+}

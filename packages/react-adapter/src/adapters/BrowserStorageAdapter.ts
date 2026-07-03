@@ -5,9 +5,11 @@ export class BrowserStorageAdapter implements IStorage {
     try {
       // File System Access API
       if ('showSaveFilePicker' in window) {
-        const handle = await (window as typeof window & {
-          showSaveFilePicker: (opts: object) => Promise<FileSystemFileHandle>;
-        }).showSaveFilePicker({
+        const handle = await (
+          window as typeof window & {
+            showSaveFilePicker: (opts: object) => Promise<FileSystemFileHandle>;
+          }
+        ).showSaveFilePicker({
           suggestedName: filename,
           types: [{ description: 'SVG files', accept: { 'image/svg+xml': ['.svg'] } }],
         });
@@ -33,9 +35,11 @@ export class BrowserStorageAdapter implements IStorage {
   async loadFile(_filename?: string): Promise<string> {
     try {
       if ('showOpenFilePicker' in window) {
-        const [handle] = await (window as typeof window & {
-          showOpenFilePicker: (opts: object) => Promise<FileSystemFileHandle[]>;
-        }).showOpenFilePicker({
+        const [handle] = await (
+          window as typeof window & {
+            showOpenFilePicker: (opts: object) => Promise<FileSystemFileHandle[]>;
+          }
+        ).showOpenFilePicker({
           types: [{ description: 'SVG files', accept: { 'image/svg+xml': ['.svg'] } }],
           multiple: false,
         });
@@ -54,7 +58,10 @@ export class BrowserStorageAdapter implements IStorage {
       input.accept = '.svg,image/svg+xml';
       input.onchange = () => {
         const file = input.files?.[0];
-        if (!file) { reject(new Error('No file selected')); return; }
+        if (!file) {
+          reject(new Error('No file selected'));
+          return;
+        }
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result as string);
         reader.onerror = () => reject(reader.error);
