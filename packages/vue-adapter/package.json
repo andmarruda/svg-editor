@@ -1,7 +1,7 @@
 {
-  "name": "@svg-editor/vue",
+  "name": "@andmarruda/svg-editor-vue",
   "version": "1.0.0",
-  "description": "Vue adapter for @svg-editor/core",
+  "description": "Vue adapter for @andmarruda/svg-editor-core",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -23,8 +23,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@svg-editor/adapter-utils": "workspace:^",
-    "@svg-editor/core": "workspace:^"
+    "@andmarruda/svg-editor-adapter-utils": "workspace:^",
+    "@andmarruda/svg-editor-core": "workspace:^"
   },
   "peerDependencies": {
     "vue": ">=3.4.0"

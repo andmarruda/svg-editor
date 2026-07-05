@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useEditor, useEditorState } from '@svg-editor/vue';
+import { useEditor, useEditorState } from '@andmarruda/svg-editor-vue';
 
 const editor = useEditor();
 const state = useEditorState();

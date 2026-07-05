@@ -3,9 +3,9 @@ import {
   useEditorCapabilities,
   useNodeCapabilities,
   useSelection,
-} from '@svg-editor/react';
-import type { FontWeight, SvgNode } from '@svg-editor/core';
-import { Fill, Color, Stroke } from '@svg-editor/core';
+} from '@andmarruda/svg-editor-react';
+import type { FontWeight, SvgNode } from '@andmarruda/svg-editor-core';
+import { Fill, Color, Stroke } from '@andmarruda/svg-editor-core';
 
 export function PropertiesPanel() {
   const editor = useEditor();

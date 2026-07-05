@@ -31,10 +31,10 @@ importers:
 
   apps/demo-react:
     dependencies:
-      '@svg-editor/core':
+      '@andmarruda/svg-editor-core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@svg-editor/react':
+      '@andmarruda/svg-editor-react':
         specifier: workspace:*
         version: link:../../packages/react-adapter
       react:
@@ -65,10 +65,10 @@ importers:
 
   apps/demo-vue:
     dependencies:
-      '@svg-editor/core':
+      '@andmarruda/svg-editor-core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@svg-editor/vue':
+      '@andmarruda/svg-editor-vue':
         specifier: workspace:*
         version: link:../../packages/vue-adapter
       vue:
@@ -93,7 +93,7 @@ importers:
 
   packages/adapter-utils:
     dependencies:
-      '@svg-editor/core':
+      '@andmarruda/svg-editor-core':
         specifier: workspace:^
         version: link:../core
     devDependencies:
@@ -149,10 +149,10 @@ importers:
 
   packages/react-adapter:
     dependencies:
-      '@svg-editor/adapter-utils':
+      '@andmarruda/svg-editor-adapter-utils':
         specifier: workspace:^
         version: link:../adapter-utils
-      '@svg-editor/core':
+      '@andmarruda/svg-editor-core':
         specifier: workspace:^
         version: link:../core
     devDependencies:
@@ -201,10 +201,10 @@ importers:
 
   packages/vue-adapter:
     dependencies:
-      '@svg-editor/adapter-utils':
+      '@andmarruda/svg-editor-adapter-utils':
         specifier: workspace:^
         version: link:../adapter-utils
-      '@svg-editor/core':
+      '@andmarruda/svg-editor-core':
         specifier: workspace:^
         version: link:../core
     devDependencies:

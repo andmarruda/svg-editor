@@ -1,4 +1,4 @@
-import { SvgEditorRoot, Canvas, SelectionOverlay } from '@svg-editor/react';
+import { SvgEditorRoot, Canvas, SelectionOverlay } from '@andmarruda/svg-editor-react';
 import { Toolbar } from './components/Toolbar';
 import { PropertiesPanel } from './components/PropertiesPanel';
 import { LayersPanel } from './components/LayersPanel';

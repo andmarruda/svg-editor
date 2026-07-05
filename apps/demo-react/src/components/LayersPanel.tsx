@@ -1,5 +1,5 @@
-import { useEditor, useEditorState } from '@svg-editor/react';
-import type { NodeId } from '@svg-editor/core';
+import { useEditor, useEditorState } from '@andmarruda/svg-editor-react';
+import type { NodeId } from '@andmarruda/svg-editor-core';
 
 export function LayersPanel() {
   const editor = useEditor();

@@ -1,6 +1,6 @@
 import { computed } from 'vue';
-import type { SvgNode } from '@svg-editor/core';
-import { NodeCapabilities } from '@svg-editor/core';
+import type { SvgNode } from '@andmarruda/svg-editor-core';
+import { NodeCapabilities } from '@andmarruda/svg-editor-core';
 import { useEditor } from './useEditor';
 import { useSelection } from './useSelection';
 

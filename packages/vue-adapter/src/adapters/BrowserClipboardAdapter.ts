@@ -1,4 +1,4 @@
-import type { IClipboardAdapter, SvgNode } from '@svg-editor/core';
+import type { IClipboardAdapter, SvgNode } from '@andmarruda/svg-editor-core';
 
 export class BrowserClipboardAdapter implements IClipboardAdapter {
   private fallback: SvgNode[] | null = null;

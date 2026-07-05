@@ -1,5 +1,5 @@
-import type { Document, Point } from '@svg-editor/core';
-import { BoundsCalculator } from '@svg-editor/core';
+import type { Document, Point } from '@andmarruda/svg-editor-core';
+import { BoundsCalculator } from '@andmarruda/svg-editor-core';
 
 export function snapPointToGrid(point: Point, gridSize = 10, enabled = true): Point {
   if (!enabled || gridSize <= 0) return point;

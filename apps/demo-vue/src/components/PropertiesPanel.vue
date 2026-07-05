@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { defineComponent, h } from 'vue';
-import type { FontWeight, SvgNode } from '@svg-editor/core';
-import { Color, Fill, Stroke } from '@svg-editor/core';
+import type { FontWeight, SvgNode } from '@andmarruda/svg-editor-core';
+import { Color, Fill, Stroke } from '@andmarruda/svg-editor-core';
 import {
   useEditor,
   useEditorCapabilities,
   useNodeCapabilities,
   useSelection,
-} from '@svg-editor/vue';
+} from '@andmarruda/svg-editor-vue';
 
 const editor = useEditor();
 const actions = useEditorCapabilities();

@@ -1,5 +1,5 @@
-import type { EditableAttribute, SvgNode } from '@svg-editor/core';
-import { NodeCapabilities } from '@svg-editor/core';
+import type { EditableAttribute, SvgNode } from '@andmarruda/svg-editor-core';
+import { NodeCapabilities } from '@andmarruda/svg-editor-core';
 import { useEditor } from './useEditor';
 import { useSelection } from './useSelection';
 

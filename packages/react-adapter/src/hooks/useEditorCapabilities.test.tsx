@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { ReactNode } from 'react';
-import { Color, Fill, Stroke } from '@svg-editor/core';
+import { Color, Fill, Stroke } from '@andmarruda/svg-editor-core';
 import { SvgEditorRoot } from '../components/SvgEditorRoot';
 import { useEditor } from './useEditor';
 import { useEditorCapabilities } from './useEditorCapabilities';

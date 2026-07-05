@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { IEditorApplication } from '@svg-editor/core';
+import type { IEditorApplication } from '@andmarruda/svg-editor-core';
 
 export const EditorContext = createContext<IEditorApplication | null>(null);
 

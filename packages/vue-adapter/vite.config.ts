@@ -12,7 +12,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['vue', '@svg-editor/core', '@svg-editor/adapter-utils'],
+      external: ['vue', '@andmarruda/svg-editor-core', '@andmarruda/svg-editor-adapter-utils'],
     },
   },
 });

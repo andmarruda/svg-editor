@@ -1,5 +1,5 @@
-import type { SvgNode } from '@svg-editor/core';
-import { NodeCapabilities } from '@svg-editor/core';
+import type { SvgNode } from '@andmarruda/svg-editor-core';
+import { NodeCapabilities } from '@andmarruda/svg-editor-core';
 
 export interface CapabilityControlGroup {
   readonly id: string;

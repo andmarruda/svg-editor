@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ShapePreset, ToolType } from '@svg-editor/core';
-import { useEditor, useEditorCapabilities, useEditorState } from '@svg-editor/vue';
+import type { ShapePreset, ToolType } from '@andmarruda/svg-editor-core';
+import { useEditor, useEditorCapabilities, useEditorState } from '@andmarruda/svg-editor-vue';
 
 const editor = useEditor();
 const state = useEditorState();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { BoundingBox, Point, ResizeHandle } from '@svg-editor/core';
-import { BoundingBox as BoundingBoxValue, BoundsCalculator } from '@svg-editor/core';
+import type { BoundingBox, Point, ResizeHandle } from '@andmarruda/svg-editor-core';
+import { BoundingBox as BoundingBoxValue, BoundsCalculator } from '@andmarruda/svg-editor-core';
 import { useEditor } from '../composables/useEditor';
 import { useEditorState } from '../composables/useEditorState';
 

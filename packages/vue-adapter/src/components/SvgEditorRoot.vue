@@ -5,7 +5,7 @@ import {
   InMemoryEventBus,
   NanoIdGenerator,
   type IEditorApplication,
-} from '@svg-editor/core';
+} from '@andmarruda/svg-editor-core';
 import { editorInjectionKey } from '../context';
 import { BrowserClipboardAdapter } from '../adapters/BrowserClipboardAdapter';
 import { SvgSerializer } from '../adapters/SvgSerializer';

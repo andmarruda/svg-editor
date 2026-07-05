@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { EditorState } from '@svg-editor/core';
+import type { EditorState } from '@andmarruda/svg-editor-core';
 import { useEditorContext } from '../context/EditorContext';
 
 export function useEditorState(): EditorState {

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { useEditor, useEditorCapabilities, useEditorState } from '@svg-editor/react';
-import type { ToolType, ShapePreset } from '@svg-editor/core';
+import { useEditor, useEditorCapabilities, useEditorState } from '@andmarruda/svg-editor-react';
+import type { ToolType, ShapePreset } from '@andmarruda/svg-editor-core';
 
 const TOOLS: Array<{ tool: ToolType; label: string; key: string; mark: string }> = [
   { tool: 'select', label: 'Select (V)', key: 'v', mark: 'V' },

@@ -1,5 +1,5 @@
 import { onUnmounted, readonly, ref } from 'vue';
-import type { EditorState } from '@svg-editor/core';
+import type { EditorState } from '@andmarruda/svg-editor-core';
 import { useEditor } from './useEditor';
 
 export function useEditorState() {

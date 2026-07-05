@@ -1,18 +1,21 @@
-# @svg-editor/vue
+# @andmarruda/svg-editor-vue
 
-Vue adapter for `@svg-editor/core`.
+Vue adapter for `@andmarruda/svg-editor-core`.
 
 ## Install
 
 ```bash
-pnpm add @svg-editor/core @svg-editor/vue vue
+npm install @andmarruda/svg-editor-core @andmarruda/svg-editor-vue vue
+pnpm add @andmarruda/svg-editor-core @andmarruda/svg-editor-vue vue
+yarn add @andmarruda/svg-editor-core @andmarruda/svg-editor-vue vue
+bun add @andmarruda/svg-editor-core @andmarruda/svg-editor-vue vue
 ```
 
 ## Basic Usage
 
 ```vue
 <script setup lang="ts">
-import { Canvas, SelectionOverlay, SvgEditorRoot } from '@svg-editor/vue';
+import { Canvas, SelectionOverlay, SvgEditorRoot } from '@andmarruda/svg-editor-vue';
 </script>
 
 <template>
@@ -28,7 +31,7 @@ import { Canvas, SelectionOverlay, SvgEditorRoot } from '@svg-editor/vue';
 ## Composables
 
 ```ts
-import { useEditor, useEditorCapabilities, useSelection } from '@svg-editor/vue';
+import { useEditor, useEditorCapabilities, useSelection } from '@andmarruda/svg-editor-vue';
 
 const editor = useEditor();
 const actions = useEditorCapabilities();

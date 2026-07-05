@@ -1,4 +1,4 @@
-import type { Selection, SvgNode } from '@svg-editor/core';
+import type { Selection, SvgNode } from '@andmarruda/svg-editor-core';
 import { useEditorState } from './useEditorState';
 
 export interface SelectionInfo {

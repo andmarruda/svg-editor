@@ -9,8 +9,8 @@ import type {
   ShapePreset,
   Stroke,
   TextStylePatch,
-} from '@svg-editor/core';
-import { Color, Stroke as StrokeValue } from '@svg-editor/core';
+} from '@andmarruda/svg-editor-core';
+import { Color, Stroke as StrokeValue } from '@andmarruda/svg-editor-core';
 import { useEditor } from './useEditor';
 import { useSelection } from './useSelection';
 

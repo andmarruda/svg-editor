@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BoundingBox } from '@svg-editor/core';
+import type { BoundingBox } from '@andmarruda/svg-editor-core';
 
 defineProps<{
   box: BoundingBox | null;

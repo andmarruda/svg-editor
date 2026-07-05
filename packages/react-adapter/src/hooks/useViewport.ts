@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { Transform } from '@svg-editor/core';
+import type { Transform } from '@andmarruda/svg-editor-core';
 import { useEditorState } from './useEditorState';
 import { useEditor } from './useEditor';
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useEditor, useEditorCapabilities, useHistory } from '@svg-editor/react';
-import { BrowserStorageAdapter } from '@svg-editor/react';
+import { useEditor, useEditorCapabilities, useHistory } from '@andmarruda/svg-editor-react';
+import { BrowserStorageAdapter } from '@andmarruda/svg-editor-react';
 
 const storage = new BrowserStorageAdapter();
 

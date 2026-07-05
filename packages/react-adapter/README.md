@@ -1,17 +1,20 @@
-# @svg-editor/react
+# @andmarruda/svg-editor-react
 
-React adapter for `@svg-editor/core`.
+React adapter for `@andmarruda/svg-editor-core`.
 
 ## Install
 
 ```bash
-pnpm add @svg-editor/core @svg-editor/react react react-dom
+npm install @andmarruda/svg-editor-core @andmarruda/svg-editor-react react react-dom
+pnpm add @andmarruda/svg-editor-core @andmarruda/svg-editor-react react react-dom
+yarn add @andmarruda/svg-editor-core @andmarruda/svg-editor-react react react-dom
+bun add @andmarruda/svg-editor-core @andmarruda/svg-editor-react react react-dom
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Canvas, SelectionOverlay, SvgEditorRoot } from '@svg-editor/react';
+import { Canvas, SelectionOverlay, SvgEditorRoot } from '@andmarruda/svg-editor-react';
 
 export function App() {
   return (
@@ -28,7 +31,7 @@ export function App() {
 ## Hooks
 
 ```tsx
-import { useEditor, useEditorCapabilities, useSelection } from '@svg-editor/react';
+import { useEditor, useEditorCapabilities, useSelection } from '@andmarruda/svg-editor-react';
 
 function Toolbar() {
   const editor = useEditor();

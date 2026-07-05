@@ -7,7 +7,7 @@
     "types": ["vue"],
     "baseUrl": ".",
     "paths": {
-      "@svg-editor/vue": ["../../packages/vue-adapter/dist/index.d.ts"]
+      "@andmarruda/svg-editor-vue": ["../../packages/vue-adapter/dist/index.d.ts"]
     }
   },
   "include": ["src", "src/**/*.vue"]

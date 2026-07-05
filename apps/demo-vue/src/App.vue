@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Canvas, SelectionOverlay, SvgEditorRoot } from '@svg-editor/vue';
+import { Canvas, SelectionOverlay, SvgEditorRoot } from '@andmarruda/svg-editor-vue';
 import Toolbar from './components/Toolbar.vue';
 import MenuBar from './components/MenuBar.vue';
 import PropertiesPanel from './components/PropertiesPanel.vue';

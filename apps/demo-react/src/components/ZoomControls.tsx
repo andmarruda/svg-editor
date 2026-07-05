@@ -1,4 +1,4 @@
-import { useEditor, useEditorState } from '@svg-editor/react';
+import { useEditor, useEditorState } from '@andmarruda/svg-editor-react';
 
 export function ZoomControls() {
   const editor = useEditor();

@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@svg-editor/core": "workspace:*",
-    "@svg-editor/vue": "workspace:*",
+    "@andmarruda/svg-editor-core": "workspace:*",
+    "@andmarruda/svg-editor-vue": "workspace:*",
     "vue": "^3.5.13"
   },
   "devDependencies": {

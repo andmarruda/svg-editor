@@ -1,4 +1,4 @@
-import type { IStorage } from '@svg-editor/core';
+import type { IStorage } from '@andmarruda/svg-editor-core';
 
 export class BrowserStorageAdapter implements IStorage {
   async saveFile(filename: string, content: string): Promise<void> {

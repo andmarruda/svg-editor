@@ -1,5 +1,11 @@
-import type { BoundingBox, EditorState, IRenderer, NodeId, Point } from '@svg-editor/core';
-import { serializeSvg } from '@svg-editor/core';
+import type {
+  BoundingBox,
+  EditorState,
+  IRenderer,
+  NodeId,
+  Point,
+} from '@andmarruda/svg-editor-core';
+import { serializeSvg } from '@andmarruda/svg-editor-core';
 
 export class SvgDomRenderer implements IRenderer {
   private container: HTMLElement | null = null;

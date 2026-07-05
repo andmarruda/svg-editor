@@ -11,7 +11,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['@svg-editor/core'],
+      external: ['@andmarruda/svg-editor-core'],
     },
   },
 });

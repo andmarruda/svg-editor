@@ -1,13 +1,16 @@
-# @svg-editor/adapter-utils
+# @andmarruda/svg-editor-adapter-utils
 
 Shared UI adapter infrastructure for SVG Editor.
 
-This package is primarily consumed by `@svg-editor/react` and `@svg-editor/vue`.
+This package is primarily consumed by `@andmarruda/svg-editor-react` and `@andmarruda/svg-editor-vue`.
 
 ## Install
 
 ```bash
-pnpm add @svg-editor/adapter-utils @svg-editor/core
+npm install @andmarruda/svg-editor-adapter-utils @andmarruda/svg-editor-core
+pnpm add @andmarruda/svg-editor-adapter-utils @andmarruda/svg-editor-core
+yarn add @andmarruda/svg-editor-adapter-utils @andmarruda/svg-editor-core
+bun add @andmarruda/svg-editor-adapter-utils @andmarruda/svg-editor-core
 ```
 
 ## Exports
@@ -20,7 +23,7 @@ pnpm add @svg-editor/adapter-utils @svg-editor/core
 ## Example
 
 ```ts
-import { SvgDomRenderer, snapPointToGrid } from '@svg-editor/adapter-utils';
+import { SvgDomRenderer, snapPointToGrid } from '@andmarruda/svg-editor-adapter-utils';
 
 const renderer = new SvgDomRenderer();
 renderer.mount(document.querySelector('#canvas')!);

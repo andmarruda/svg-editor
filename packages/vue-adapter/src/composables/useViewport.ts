@@ -1,4 +1,4 @@
-import type { Transform } from '@svg-editor/core';
+import type { Transform } from '@andmarruda/svg-editor-core';
 import { useEditor } from './useEditor';
 import { useEditorState } from './useEditorState';
 

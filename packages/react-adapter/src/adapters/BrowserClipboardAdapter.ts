@@ -1,5 +1,5 @@
-import type { IClipboardAdapter } from '@svg-editor/core';
-import type { SvgNode } from '@svg-editor/core';
+import type { IClipboardAdapter } from '@andmarruda/svg-editor-core';
+import type { SvgNode } from '@andmarruda/svg-editor-core';
 
 const MIME_TYPE = 'text/x-svg-editor-nodes';
 

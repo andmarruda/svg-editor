@@ -1,12 +1,12 @@
 import { useRef, useEffect, useCallback, type PointerEvent } from 'react';
-import type { NodeId, BoundingBox, ShapePreset } from '@svg-editor/core';
+import type { NodeId, BoundingBox, ShapePreset } from '@andmarruda/svg-editor-core';
 import {
   createNodeFromPointer,
   inlinePlaceholderImage,
   snapPointToGrid,
   snapPointToObjects,
   toDocCoords as toDocumentCoords,
-} from '@svg-editor/adapter-utils';
+} from '@andmarruda/svg-editor-adapter-utils';
 import { useEditor } from '../hooks/useEditor';
 import { useEditorState } from '../hooks/useEditorState';
 import { SvgDomRenderer } from '../renderer/SvgDomRenderer';

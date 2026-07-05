@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import type { BoundingBox, ShapePreset } from '@svg-editor/core';
+import type { BoundingBox, ShapePreset } from '@andmarruda/svg-editor-core';
 import {
   createNodeFromPointer,
   inlinePlaceholderImage,
   snapPointToGrid,
   snapPointToObjects,
   toDocCoords,
-} from '@svg-editor/adapter-utils';
+} from '@andmarruda/svg-editor-adapter-utils';
 import { SvgDomRenderer } from '../renderer/SvgDomRenderer';
 import { useEditor } from '../composables/useEditor';
 import { useEditorState } from '../composables/useEditorState';

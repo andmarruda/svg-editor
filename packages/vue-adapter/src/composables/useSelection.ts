@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import type { SvgNode } from '@svg-editor/core';
+import type { SvgNode } from '@andmarruda/svg-editor-core';
 import { useEditorState } from './useEditorState';
 
 export function useSelection() {

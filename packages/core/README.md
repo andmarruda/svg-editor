@@ -1,11 +1,14 @@
-# @svg-editor/core
+# @andmarruda/svg-editor-core
 
 Framework-agnostic SVG editor engine.
 
 ## Install
 
 ```bash
-pnpm add @svg-editor/core
+npm install @andmarruda/svg-editor-core
+pnpm add @andmarruda/svg-editor-core
+yarn add @andmarruda/svg-editor-core
+bun add @andmarruda/svg-editor-core
 ```
 
 ## Basic Usage
@@ -17,7 +20,7 @@ import {
   NanoIdGenerator,
   parseSvg,
   serializeSvg,
-} from '@svg-editor/core';
+} from '@andmarruda/svg-editor-core';
 
 const app = new EditorApplication({
   serializer: { parse: parseSvg, serialize: serializeSvg },

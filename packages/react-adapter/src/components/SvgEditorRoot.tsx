@@ -1,6 +1,6 @@
 import { useMemo, type ReactNode } from 'react';
-import { EditorApplication, NanoIdGenerator, InMemoryEventBus } from '@svg-editor/core';
-import type { IEditorApplication, IStorage } from '@svg-editor/core';
+import { EditorApplication, NanoIdGenerator, InMemoryEventBus } from '@andmarruda/svg-editor-core';
+import type { IEditorApplication, IStorage } from '@andmarruda/svg-editor-core';
 import { EditorContext } from '../context/EditorContext';
 import { BrowserClipboardAdapter } from '../adapters/BrowserClipboardAdapter';
 import { BrowserStorageAdapter } from '../adapters/BrowserStorageAdapter';

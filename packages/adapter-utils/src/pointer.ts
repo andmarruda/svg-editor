@@ -4,7 +4,7 @@ import type {
   Point,
   ShapePreset,
   ToolType,
-} from '@svg-editor/core';
+} from '@andmarruda/svg-editor-core';
 
 export interface CreateNodeFromPointerInput {
   readonly editor: IEditorApplication;

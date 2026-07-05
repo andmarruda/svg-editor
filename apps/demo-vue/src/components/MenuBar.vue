@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useEditor, useEditorCapabilities, useHistory } from '@svg-editor/vue';
-import { BrowserStorageAdapter } from '@svg-editor/vue';
+import { useEditor, useEditorCapabilities, useHistory } from '@andmarruda/svg-editor-vue';
+import { BrowserStorageAdapter } from '@andmarruda/svg-editor-vue';
 
 const editor = useEditor();
 const actions = useEditorCapabilities();

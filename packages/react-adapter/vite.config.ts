@@ -16,7 +16,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', '@svg-editor/core'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', '@andmarruda/svg-editor-core'],
       output: {
         globals: {
           react: 'React',

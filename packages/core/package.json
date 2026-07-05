@@ -1,5 +1,5 @@
 {
-  "name": "@svg-editor/core",
+  "name": "@andmarruda/svg-editor-core",
   "version": "1.0.0",
   "description": "Framework-agnostic SVG editor core — ports & adapters architecture",
   "license": "MIT",

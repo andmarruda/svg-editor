@@ -1,5 +1,5 @@
-import type { BoundingBox, Point, ResizeHandle } from '@svg-editor/core';
-import { BoundingBox as BoundingBoxValue, BoundsCalculator } from '@svg-editor/core';
+import type { BoundingBox, Point, ResizeHandle } from '@andmarruda/svg-editor-core';
+import { BoundingBox as BoundingBoxValue, BoundsCalculator } from '@andmarruda/svg-editor-core';
 import { useEditorState } from '../hooks/useEditorState';
 import { useEditor } from '../hooks/useEditor';
 

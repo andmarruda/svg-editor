@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, h } from 'vue';
-import { Color, Fill, Stroke } from '@svg-editor/core';
+import { Color, Fill, Stroke } from '@andmarruda/svg-editor-core';
 import SvgEditorRoot from '../components/SvgEditorRoot.vue';
 import { useEditor } from './useEditor';
 import { useEditorCapabilities } from './useEditorCapabilities';

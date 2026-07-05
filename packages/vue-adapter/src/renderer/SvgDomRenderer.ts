@@ -1,1 +1,1 @@
-export { SvgDomRenderer } from '@svg-editor/adapter-utils';
+export { SvgDomRenderer } from '@andmarruda/svg-editor-adapter-utils';
